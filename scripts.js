@@ -16,10 +16,21 @@ function divide(a, b) {
     return a / b;
 }
 
-let a = 2;
-let b = 4;
+function operate(a, b, operand) {
+    let result = null;
+    if (operand == "add") {
+       result = add(a, b);        
+    } else if (operand == "subtract") {
+        result = subtract(a, b);        
+    } else if (operand == "multiply") {
+        result = multiply(a, b);        
+    } else if (operand == "divide") {
+        result = divide(a, b);        
+    }     
+    console.log(result.toFixed(2));
+}
 
-console.log(add(a, b));
-console.log(subtract(a, b));
-console.log(multiply(a, b));
-console.log(divide(a, b));
+operate(4, 6.5, "add");
+operate(4, 6.5, "subtract");
+operate(4, 6.5, "multiply");
+operate(4, 6.5, "divide");
