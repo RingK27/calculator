@@ -69,12 +69,13 @@ function makeOperation() {
 
 function updateOperationString() {
     let lastChar = operationString[operationString.length -1];
+    let strLenght = operationString.length;
     
     if (this.id == "÷" || this.id == "X" || this.id == "-" || this.id == "+"  
         || this.id == "^" || this.id == ".") {
         if (lastChar == "÷" || lastChar == "X" || lastChar == "-" 
             || lastChar == "+" || lastChar == "^" || lastChar == "." ) {
-            return;
+            return;        
         } else {
             if (this.id == ".") {
                 operationString += this.id;    
@@ -84,6 +85,8 @@ function updateOperationString() {
                 displayNumbers.innerHTML = operationString;     
             }                       
         }
+    } else if (lastChar == "0" && this.id == "0"){
+        return;
     } else {
         operationString += this.id;    
         displayNumbers.innerHTML = operationString;         
