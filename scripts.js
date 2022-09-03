@@ -1,42 +1,93 @@
-function add(a, b){
-    return a + b;
+let operand = null;
+let operationString = "";
+let buttons = document.querySelectorAll(".number, .operator");
+let displayNumbers = document.getElementById("display-numbers");
+let clearBtn = document.getElementById("C");
+let delBtn = document.getElementById("DEL");
+let equBtn = document.getElementById("equals");
+
+clearBtn.addEventListener("click", clear);
+delBtn.addEventListener("click", del);
+equBtn.addEventListener("click", makeOperation);
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", updateOperationString);       
 }
 
-function subtract (a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-function elevate(a, b) {
-    return Math.pow(a, b);
-}
-
-function operate(a, b, operand) {
+function operate(numbers, operators) {
     let result = null;
-    if (operand == "add") {
-       result = add(a, b);        
-    } else if (operand == "subtract") {
-        result = subtract(a, b);        
-    } else if (operand == "multiply") {
-        result = multiply(a, b);        
-    } else if (operand == "divide") {
-        result = divide(a, b);        
-    } else if (operand == "elevate") {
-        result = elevate(a, b);
+    let tempResult = numbers[0];
+    let a = null;
+    let b = null;
+
+    for (i = 0; i < operators.length; i++) {        
+        if (operators[i] == "+") {
+            tempResult = tempResult + numbers[i+1];
+        } else if (operators[i] == "÷") {
+            tempResult = tempResult / numbers[i+1];
+        } else if (operators[i] == "X") {
+            tempResult = tempResult * numbers[i+1];
+        } else if (operators[i] == "^") {
+            tempResult = Math.pow(tempResult, numbers[i+1]);
+        } else if (operators[i] == "-") {
+            tempResult = tempResult - numbers[i+1];
+        }        
+    }
+    result = tempResult;
+
+    if (result % 1 == 0) {
+        displayNumbers.innerHTML = result;        
+    } else {
+        let strResult = String(result);
+        if (strResult.charAt(strResult.length-1) == 0) {
+            result = result.toFixed(1);
+            displayNumbers.innerHTML = result; 
+        } else {
+            result = result.toFixed(2);
+            displayNumbers.innerHTML = result; 
+        }               
     }    
-    console.log(result.toFixed(2));
+    operationString = "";
 }
 
-function updateOperationString() {    
-    operationString += this.id;    
-    displayNumbers.innerHTML = operationString;
+function makeOperation() {
+    let operation = operationString.split(" ");
+    let numArray = new Array();
+    let opeArray = new Array();
+
+    for (i = 0; i < operation.length; i++) {
+        let test = operation[i];
+        if (test == "+" || test == "X" || test == "-" || test == "^" 
+            || test == "÷") {
+            opeArray.push(test); 
+        } else {
+            numArray.push(parseFloat(test));            
+        }
+    }
+    operate(numArray, opeArray);
+}
+
+function updateOperationString() {
+    let lastChar = operationString[operationString.length -1];
+    
+    if (this.id == "÷" || this.id == "X" || this.id == "-" || this.id == "+"  
+        || this.id == "^" || this.id == ".") {
+        if (lastChar == "÷" || lastChar == "X" || lastChar == "-" 
+            || lastChar == "+" || lastChar == "^" || lastChar == "." ) {
+            return;
+        } else {
+            if (this.id == ".") {
+                operationString += this.id;    
+                displayNumbers.innerHTML = operationString;                
+            } else {
+                operationString += " " + this.id + " ";    
+                displayNumbers.innerHTML = operationString;     
+            }                       
+        }
+    } else {
+        operationString += this.id;    
+        displayNumbers.innerHTML = operationString;         
+    }   
 }
 
 function clear() {
@@ -58,17 +109,3 @@ function del() {
     }   
 }
 
-let operand = null;
-let operationString = "";
-let numButtons = document.querySelectorAll(".number");
-let opeButtons = document.querySelectorAll(".operator");
-let displayNumbers = document.getElementById("display-numbers");
-let clearBtn = document.getElementById("C");
-let delBtn = document.getElementById("DEL");
-
-clearBtn.addEventListener("click", clear);
-delBtn.addEventListener("click", del);
-
-for (let i = 0; i < numButtons.length; i++) {
-    numButtons[i].addEventListener("click", updateOperationString);       
-}
