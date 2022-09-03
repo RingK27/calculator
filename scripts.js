@@ -1,5 +1,3 @@
-let operand = null;
-
 function add(a, b){
     return a + b;
 }
@@ -36,8 +34,41 @@ function operate(a, b, operand) {
     console.log(result.toFixed(2));
 }
 
-operate(4, 6.5, "add");
-operate(4, 6.5, "subtract");
-operate(4, 6.5, "multiply");
-operate(4, 6.5, "divide");
-operate(2, 4, "elevate");
+function updateOperationString() {    
+    operationString += this.id;    
+    displayNumbers.innerHTML = operationString;
+}
+
+function clear() {
+    operationString = "0";
+    displayNumbers.innerHTML = operationString;
+    operationString = "";
+}
+
+function del() {
+    if (operationString.length > 1) {
+        operationString = operationString.substring(0, operationString.length -1);
+        displayNumbers.innerHTML = operationString;
+    } else if (operationString.length == 1) {
+        operationString = "0";
+        displayNumbers.innerHTML = operationString;
+        operationString = "";
+    } else {
+        return;
+    }   
+}
+
+let operand = null;
+let operationString = "";
+let numButtons = document.querySelectorAll(".number");
+let opeButtons = document.querySelectorAll(".operator");
+let displayNumbers = document.getElementById("display-numbers");
+let clearBtn = document.getElementById("C");
+let delBtn = document.getElementById("DEL");
+
+clearBtn.addEventListener("click", clear);
+delBtn.addEventListener("click", del);
+
+for (let i = 0; i < numButtons.length; i++) {
+    numButtons[i].addEventListener("click", updateOperationString);       
+}

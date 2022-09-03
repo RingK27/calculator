@@ -4,48 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        
         <div class="calculator">
-            <div class="display"><p id="display-numbers">1234567</p></div>
+            <div class="display"><p id="display-numbers">0</p></div>
             <div class="key-container">
                 <div class="key-row">
-                    <button class="button operator">C</button>
-                    <button class="button operator">DEL</button>
-                    <button class="button operator">N^</button>
-                    <button class="button operator">÷</button>
+                    <button class="button func" id ="C">C</button>
+                    <button class="button func" id ="DEL">DEL</button>
+                    <button class="button operator" id ="^">N^</button>
+                    <button class="button operator" id ="÷">÷</button>
                 </div>
                 <div class="key-row">
-                    <button class="button number">7</button>
-                    <button class="button number">8</button>
-                    <button class="button number">9</button>
-                    <button class="button operator">X</button>
+                    <button class="button number" id ="7">7</button>
+                    <button class="button number" id ="8">8</button>
+                    <button class="button number" id ="9">9</button>
+                    <button class="button operator" id ="X">X</button>
                 </div>
                 <div class="key-row">
-                    <button class="button number">4</button>
-                    <button class="button number">5</button>
-                    <button class="button number">6</button>
-                    <button class="button operator">-</button>
+                    <button class="button number" id ="4">4</button>
+                    <button class="button number" id ="5">5</button>
+                    <button class="button number" id ="6">6</button>
+                    <button class="button operator" id ="-">-</button>
                 </div>
                 <div class="key-row">
-                    <button class="button number">1</button>
-                    <button class="button number">2</button>
-                    <button class="button number">3</button>
-                    <button class="button operator">+</button>
+                    <button class="button number" id ="1">1</button>
+                    <button class="button number" id ="2">2</button>
+                    <button class="button number" id ="3">3</button>
+                    <button class="button operator" id ="+">+</button>
                 </div>
                 <div class="key-row">
-                    <button class="button number">0</button>
-                    <button class="button number">.</button>
-                    <button class="button" id="equals">=</button>
-                    
+                    <button class="button number" id ="0">0</button>
+                    <button class="button number" id =".">.</button>
+                    <button class="button" id="equals" id ="=">=</button>                    
                 </div>
             </div>
         </div>
-        
     </div>
     <script src="scripts.js"></script> 
 </body>
